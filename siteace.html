@@ -1,0 +1,122 @@
+<head>
+  <title>siteace</title>
+</head>
+
+<body>
+
+
+
+</body>
+<!-- .......................................TEMPLETE LAYOUT.............................................................. -->
+<template name="ApplicationLayout">
+	{{>yield "navbar"}}
+  <div class="container">
+    {{>yield "form"}}
+    {{>yield "main"}}
+  </div>
+
+</template>
+<!-- .......................................TEMPLETE.............................................................. -->
+<template name="detail_page">
+
+  <h3>Website name: {{title}}</h3>
+  <p>{{description}}</p>
+  <h4>Up Votes: {{upVote}}</h4> <h4>Down Votes: {{downVote}}</h4>
+  <div class="comment_box">
+    <h3>Comments</h3>
+    <p>
+      {{#each comments}}
+
+    	<b>Name: {{NameOfCommenter}}</b><br>
+      <b>Date: </b> {{commentAddedOn}}
+      <p>{{comment}}</p>
+
+    	{{/each}}
+    </p>
+    <textarea placeholder="Comments" id="comment"></textarea><br>
+    <input type="button" name="submit_comment" value="Submit" class="btn btn-secondary js-submit-comment"><br>
+  </div>
+  <a href="/" class="btn btn-primary">Go Back</a>
+  <a href="{{url}}" class="btn btn-success">Visit Website</a>
+
+
+</template>
+<!-- .......................................TEMPLETE.............................................................. -->
+<template name="navbar">
+  <!-- navbar  - you will be putting the login functions here -->
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">
+          Site Ace
+        </a>
+      </div>
+      <div class="loginB pull-right">
+        {{>loginButtons}}
+      </div>
+    </div>
+  </nav>
+</template>
+
+<!-- .......................................TEMPLETE.............................................................. -->
+<template name="website_form">
+  {{#if currentUser}}
+	<a class="btn btn-default js-toggle-website-form" href="#">
+  		<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+	</a>
+  {{/if}}
+	<div id="website_form" class="hidden_div">
+		<form class="js-save-website-form">
+		  <div class="form-group">
+		    <label for="url">Site address</label>
+		    <input type="text" class="form-control" id="url" placeholder="http://www.mysite.com">
+		  </div>
+		  <div class="form-group">
+		    <label for="title">Title</label>
+		    <input type="text" class="form-control" id="title" placeholder="Mysite">
+		  </div>
+		    <div class="form-group">
+		    <label for="description">Description</label>
+		    <input type="text" class="form-control" id="description" placeholder="I found this site really useful for ...">
+		  </div>
+
+		  <button type="submit" class="btn btn-default">Submit</button>
+		</form>
+	</div>
+</template>
+
+
+<!-- .......................................TEMPLETE.............................................................. -->
+<!-- template that displays several website items -->
+<template name="website_list">
+	<ol>
+	{{#each websites}}
+	{{>website_item}}
+	{{/each}}
+	</ol>
+</template>
+
+
+<!-- .......................................TEMPLETE.............................................................. -->
+<!-- template that displays individual website entries -->
+<template name="website_item">
+<li>
+	<a href="{{url}}">{{title}}</a>
+	<p>
+    <b>Entry Date:</b> {{createdOn}}<br>
+
+
+    {{description}}
+  </p>
+
+	<a href="#" class="btn btn-success js-upvote">
+		<span class="glyphicon glyphicon-arrow-up" aria-hidden="true">{{upVote}}</span>
+	</a>
+	<a href="#" class="btn btn-danger js-downvote">
+		<span class="glyphicon glyphicon-arrow-down" aria-hidden="true">{{downVote}}</span>
+	</a>
+	<!-- you will be putting your up and down vote buttons in here! -->
+    <a href="/{{title}}" class="btn btn-info">Details</a>
+</li>
+<br>
+</template>

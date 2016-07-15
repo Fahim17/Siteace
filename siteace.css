@@ -1,0 +1,16 @@
+/* CSS declarations go here */
+.hidden_div{
+	display:none;
+}
+.loginB{
+	padding-right: 100px;
+}
+.upvote{
+	padding-right: 50px;
+}
+.comment_box{
+	padding-bottom:15px;
+}
+.hidden_div input{
+	width: 40%;
+}
