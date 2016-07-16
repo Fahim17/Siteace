@@ -1,0 +1,8 @@
+{
+  "galaxy.meteor.com": {
+    "env": {
+      "MONGO_URL": "http://siteace-bd.meteorapp.com",
+      "MONGO_URL": " mongodb://siteace:werty1234@ds021895.mlab.com:21895/siteace"
+    }
+  }
+}
